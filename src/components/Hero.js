@@ -32,15 +32,15 @@ const Hero = () => {
       </ul>
 
       <div className="buttons mt-5 md:mt-8 px-2 md:px-0" style={{display:'flex',flexWrap:'wrap'}}>
-        <button
+        <button 
           className="text-xl md:text-2xl mr-4 md:mr-8"
-        style={{backgroundColor:'rgb(5,150,105)',color:'white',padding:'8px 12px',fontFamily:'Nunito,sans-serif',borderRadius:'4px'}}>Create your own</button>
-        <button className="text-xl md:text-2xl" style={{backgroundColor:'rgb(55,65,81)',color:'white',padding:'8px 12px',fontFamily:'Nunito,sans-serif',borderRadius:'4px'}}>View Demo</button>
+        style={{backgroundColor:'rgb(5,150,105)',color:'white',padding:'8px 12px',fontFamily:'Nunito,sans-serif',borderRadius:'4px'}}><a href="#preview">Create Your Own</a></button>
+        <button className="text-xl md:text-2xl" style={{backgroundColor:'rgb(55,65,81)',color:'white',padding:'8px 12px',fontFamily:'Nunito,sans-serif',borderRadius:'4px'}}><a href="https://enbizcard.vishnuraghav.com/demo/" target="blank">View Demo</a></button>
       </div>
       
       <p
       className="px-2" 
-      style={{marginTop:'1rem',color:'white'}}>Read the <a href="#hosting" style={{color:'rgb(5,150,105)',textDecoration:'underline'}}>Hosting Guide</a></p>
+      style={{marginTop:'1rem',color:'white'}}>Read the <a href="https://enbizcard.vishnuraghav.com/hosting-guide" target="blank" style={{color:'rgb(5,150,105)',textDecoration:'underline'}}>Hosting Guide</a></p>
 
     </>
   );

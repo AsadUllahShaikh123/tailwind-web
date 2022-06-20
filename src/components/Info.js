@@ -8,6 +8,7 @@ const Info = ({ inputs, setInputs, handleChange }) => {
   return (
     <>
       <div
+       id="preview"
         className="info-preview"
         style={{
           marginTop: "2rem",
@@ -72,8 +73,7 @@ const Info = ({ inputs, setInputs, handleChange }) => {
                 padding: "0.5rem 1rem",
               }}
             >
-              https://yoursite/vcard/{inputs.firstName}
-              {inputs.lastName}
+              https://yoursite/vcard/{inputs.firstName }{inputs.lastName}
             </div>
             <i
               class="fa fa-ellipsis-v"
@@ -115,6 +115,7 @@ const Info = ({ inputs, setInputs, handleChange }) => {
             className="white"
             style={{
               width: "100%",
+              fontWeight:'400 !important',
               minHeight:'290px',
               display: "flex",
               flexDirection: "column",
