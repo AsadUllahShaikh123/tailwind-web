@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import Header from "./components/Header";
+import Hero from "./components/Hero";
+import Info from "./components/Info";
 
-function App() {
+
+const App = () => {
+
+  let [inputs,setInputs] = useState({
+    firstName:'',
+    lastName :'',
+    gender   :'',
+    job      :'',
+    buisness :'',
+    address  :'',
+    description:'',
+    key       :''
+  });
+  let handleChange =(e)=>{
+      let {name,value} = e.target;
+      setInputs({...inputs, [name]:value})
+      console.log("hello")      
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="w-full md:w-3/4 md:mr-auto md:ml-auto px-2" >
+        <Header />
+         <Hero />
+         <Info inputs={inputs} setInputs={setInputs} handleChange ={handleChange}/>
+       </div>
+
+    
+    </>
   );
-}
+};
 
 export default App;
