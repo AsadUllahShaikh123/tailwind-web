@@ -13,7 +13,7 @@ const Info = ({
   handleClick,
   handleImageChange,
   click,
-  setClick
+  setClick,
 }) => {
   return (
     <>
@@ -52,10 +52,10 @@ const Info = ({
           className="preview-sec hidden md:block"
           style={{
             width: "45%",
-            maxHeight:'100vh',
-            overflow:'scroll',
-            overflowX:'hidden',
-            scrollbarWidth:'0px',
+            maxHeight: "100vh",
+            overflow: "scroll",
+            overflowX: "hidden",
+            scrollbarWidth: "0px",
             padding: "0 0.3rem",
             top: "70px",
             position: "sticky",
@@ -131,12 +131,34 @@ const Info = ({
                 style={{ color: "white", fontSize: "2rem" }}
               ></i>
             </div>
-            {
-                image.file2 && <div className="hiddden" style={{ position: "absolute",right:'35%',top:'50%' }}>
-                <img src={image.file2} alt="" srcset="" style={{width:'150px',height:'150px',borderRadius:'50%',border:'2px solid white'}} />
+            {image.file3 && (
+              <div className="image" style={{display:'flex',justifyContent:'center'}}>
+                <img
+                  src={image.file3}
+                  alt=""
+                  srcset=""
+                  style={{ width: "100px", height: "100px" }}
+                />
               </div>
-            }
-            
+            )}
+            {image.file2 && (
+              <div
+                className="hiddden"
+                style={{ position: "absolute", right: "35%", top: "90%" }}
+              >
+                <img
+                  src={image.file2}
+                  alt=""
+                  srcset=""
+                  style={{
+                    width: "150px",
+                    height: "150px",
+                    borderRadius: "50%",
+                    border: "2px solid white",
+                  }}
+                />
+              </div>
+            )}
           </div>
 
           {/* White Section */}
@@ -150,9 +172,9 @@ const Info = ({
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              background: `${image.file3 ?`url('${image.file3}')`:'rgb(251,251,251)'}`,
+              background: "rgb(251,251,251)",
               borderRadius: "0 0 8px 8px",
-              backgroundPosition:'center center'
+              backgroundPosition: "center center",
             }}
           >
             <div
@@ -162,15 +184,22 @@ const Info = ({
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: `${inputs ? "4rem 0" : "0 2rem"}`,
+                margin: `${inputs ? "9rem 0" : "0"}`,
               }}
             >
-              {inputs.firstName && <p>{inputs.firstName}</p>}
-              {inputs.lastName && <p>{inputs.lastName}</p>}
-              {inputs.gender && <p>{inputs.gender}</p>}
-              {inputs.job && <p>{inputs.job}</p>}
+              {(inputs.firstName || inputs.lastName) && (
+                <p style={{ fontSize: "2rem" }}>
+                  {inputs.firstName}
+                  {inputs.lastName}
+                </p>
+              )}
+              {inputs.gender && <p>({inputs.gender})</p>}
+
+              {inputs.job && <p style={{ marginTop: "1rem" }}>{inputs.job}</p>}
               {inputs.buisness && <p>{inputs.buisness}</p>}
-              {inputs.address && <p>{inputs.address}</p>}
+              {inputs.address && (
+                <p style={{ marginTop: "1rem" }}>{inputs.address}</p>
+              )}
               {inputs.description && <p>{inputs.description}</p>}
               {inputs.key && <p>{inputs.key}</p>}
             </div>

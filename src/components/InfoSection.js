@@ -54,7 +54,7 @@ const InfoSection = ({
 
           <div className="text">
             <p style={{ color: "rgb(243, 244, 246)", fontWeight: "400" }}>
-              Add Logo
+              Add Cover
             </p>
             <p style={{ fontFamily: "400", color: "rgb(156, 163, 175)" }}>
               suggested format: svg,png or gif
@@ -62,23 +62,30 @@ const InfoSection = ({
           </div>
         </div>
       ) : (
-        <div className="image" style={{ display: "flex",justifyContent:'space-between' , marginTop:'2rem' }}>
+        <div className="image" style={{ display: "flex", marginTop: "2rem" }}>
           <img
             src={image.file1}
             alt=""
             srcset=""
-            style={{ width: "70%", height: "100px" }}
+            style={{
+              width: "20%",
+              height: "100px",
+              backgroundPosition: "50% 50%",
+              borderRadius: "8px",
+              marginRight: "2rem",
+            }}
           />
-          <button name="file1" onClick={handleRemoveImage} style={{fontSize:'2rem',color:'white'}}>
+          <button
+            name="file1"
+            onClick={handleRemoveImage}
+            style={{ fontSize: "2rem", color: "white" }}
+          >
             X
           </button>
         </div>
       )}
 
-      
-
-
-{click.file2 ? (
+      {click.file2 ? (
         <div
           className="stepC"
           style={{ display: "flex", flexWrap: "wrap", marginTop: "1.5rem" }}
@@ -111,7 +118,7 @@ const InfoSection = ({
 
           <div className="text">
             <p style={{ color: "rgb(243, 244, 246)", fontWeight: "400" }}>
-              Add Logo
+              Add Profile
             </p>
             <p style={{ fontFamily: "400", color: "rgb(156, 163, 175)" }}>
               suggested format: svg,png or gif
@@ -119,20 +126,30 @@ const InfoSection = ({
           </div>
         </div>
       ) : (
-        <div className="image" style={{ display: "flex",justifyContent:'space-between',marginTop:'2rem' }}>
+        <div className="image" style={{ display: "flex", marginTop: "2rem" }}>
           <img
             src={image.file2}
             alt=""
             srcset=""
-            style={{ width: "70%", height: "100px" }}
+            style={{
+              width: "20%",
+              height: "100px",
+              backgroundPosition: "50% 50%",
+              borderRadius: "8px",
+              marginRight: "2rem",
+            }}
           />
-          <button name="file2" onClick={handleRemoveImage} style={{fontSize:'2rem',color:'white'}}>
+          <button
+            name="file2"
+            onClick={handleRemoveImage}
+            style={{ fontSize: "2rem", color: "white" }}
+          >
             X
           </button>
         </div>
       )}
 
-        <Suggestion suggestion={suggestion} />
+      <Suggestion suggestion={suggestion} />
       <h1
         style={{
           color: "rgb(243, 244, 246)",
@@ -184,14 +201,24 @@ const InfoSection = ({
           </div>
         </div>
       ) : (
-        <div className="image" style={{ display: "flex",justifyContent:'space-between',marginTop:'2rem' }}>
+        <div className="image" style={{ display: "flex", marginTop: "2rem" }}>
           <img
             src={image.file3}
             alt=""
             srcset=""
-            style={{ width: "70%", height: "100px" }}
+            style={{
+              width: "20%",
+              height: "100px",
+              backgroundPosition: "50% 50%",
+              borderRadius: "8px",
+              marginRight: "2rem",
+            }}
           />
-          <button name="file3" onClick={handleRemoveImage} style={{fontSize:'2rem',color:'white'}}>
+          <button
+            name="file3"
+            onClick={handleRemoveImage}
+            style={{ fontSize: "2rem", color: "white" }}
+          >
             X
           </button>
         </div>
