@@ -52,13 +52,16 @@ const Info = ({
           className="preview-sec hidden md:block"
           style={{
             width: "45%",
-            alignSelf: "flex-start",
+            maxHeight:'100vh',
+            overflow:'scroll',
+            overflowX:'hidden',
+            scrollbarWidth:'0px',
             padding: "0 0.3rem",
             top: "70px",
             position: "sticky",
             backgroundColor: "black",
             borderRadius: "8px",
-            border: "2px solid black",
+            border: "1px solid black",
           }}
         >
           <h1
@@ -129,7 +132,7 @@ const Info = ({
               ></i>
             </div>
             {
-                image.file2 && <div className="hiddden" style={{ position: "absolute",right:'35%' }}>
+                image.file2 && <div className="hiddden" style={{ position: "absolute",right:'35%',top:'50%' }}>
                 <img src={image.file2} alt="" srcset="" style={{width:'150px',height:'150px',borderRadius:'50%',border:'2px solid white'}} />
               </div>
             }
@@ -159,7 +162,7 @@ const Info = ({
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: `${inputs ? "1rem 0" : "0"}`,
+                margin: `${inputs ? "4rem 0" : "0 2rem"}`,
               }}
             >
               {inputs.firstName && <p>{inputs.firstName}</p>}

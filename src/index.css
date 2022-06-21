@@ -11,6 +11,21 @@
   font-family: 'Nunito';
 }
 
+/* Scrolling works but without showing scroll bar  */
+
+html {
+  overflow: scroll;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}
+/* Optional: show position indicator in red */
+::-webkit-scrollbar-thumb {
+  background: #FF0000;
+}
+
 body {
   min-height: 100vh;
   background-color: rgb(17, 24, 39);
