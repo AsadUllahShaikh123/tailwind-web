@@ -4,11 +4,21 @@ import Featured from "./Featured";
 import FormSection from "./FormSection";
 import InfoSection from "./InfoSection";
 
-const Info = ({ inputs, setInputs, handleChange }) => {
+const Info = ({
+  inputs,
+  setInputs,
+  handleChange,
+  image,
+  setImage,
+  handleClick,
+  handleImageChange,
+  click,
+  setClick
+}) => {
   return (
     <>
       <div
-       id="preview"
+        id="preview"
         className="info-preview"
         style={{
           marginTop: "2rem",
@@ -21,7 +31,14 @@ const Info = ({ inputs, setInputs, handleChange }) => {
           className="info w-full md:w-1/2 px-2"
           style={{ marginTop: "7rem" }}
         >
-          <InfoSection />
+          <InfoSection
+            image={image}
+            setImage={setImage}
+            handleClick={handleClick}
+            handleImageChange={handleImageChange}
+            click={click}
+            setClick={setClick}
+          />
           <FormSection
             inputs={inputs}
             setInputs={setInputs}
@@ -73,7 +90,8 @@ const Info = ({ inputs, setInputs, handleChange }) => {
                 padding: "0.5rem 1rem",
               }}
             >
-              https://yoursite/vcard/{inputs.firstName }{inputs.lastName}
+              https://yoursite/vcard/{inputs.firstName}
+              {inputs.lastName}
             </div>
             <i
               class="fa fa-ellipsis-v"
@@ -88,9 +106,12 @@ const Info = ({ inputs, setInputs, handleChange }) => {
               width: "100%",
               height: "200px",
               padding: "1rem 0",
-              backgroundColor: "rgb(5 150 105)",
+              background: `${
+                image.file1 ? `url('${image.file1}')` : "rgb(5 150 105)"
+              }`,
               display: "flex",
               flexDirection: "column",
+              position: "relative",
             }}
           >
             <div className="icons" style={{ alignSelf: "flex-end" }}>
@@ -107,6 +128,12 @@ const Info = ({ inputs, setInputs, handleChange }) => {
                 style={{ color: "white", fontSize: "2rem" }}
               ></i>
             </div>
+            {
+                image.file2 && <div className="hiddden" style={{ position: "absolute",right:'35%' }}>
+                <img src={image.file2} alt="" srcset="" style={{width:'150px',height:'150px',borderRadius:'50%',border:'2px solid white'}} />
+              </div>
+            }
+            
           </div>
 
           {/* White Section */}
@@ -115,16 +142,26 @@ const Info = ({ inputs, setInputs, handleChange }) => {
             className="white"
             style={{
               width: "100%",
-              fontWeight:'400 !important',
-              minHeight:'290px',
+              fontWeight: "400 !important",
+              minHeight: "290px",
               display: "flex",
               flexDirection: "column",
               justifyContent: "space-between",
-              backgroundColor: "rgb(251,251,251)",
+              background: `${image.file3 ?`url('${image.file3}')`:'rgb(251,251,251)'}`,
               borderRadius: "0 0 8px 8px",
+              backgroundPosition:'center center'
             }}
           >
-            <div className="inputs" style={{display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'center',margin:`${inputs ? '1rem 0' : '0'}`}}>
+            <div
+              className="inputs"
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                margin: `${inputs ? "1rem 0" : "0"}`,
+              }}
+            >
               {inputs.firstName && <p>{inputs.firstName}</p>}
               {inputs.lastName && <p>{inputs.lastName}</p>}
               {inputs.gender && <p>{inputs.gender}</p>}
@@ -146,13 +183,16 @@ const Info = ({ inputs, setInputs, handleChange }) => {
                   fontSize: "1.5rem",
                   padding: "1rem",
                   backgroundColor: "rgb(5 150 105)",
-                  margin:`${inputs ? '1rem 0' : '0'}`
+                  margin: `${inputs ? "1rem 0" : "0"}`,
                 }}
               >
                 Save Contact
               </button>
             </div>
-            <div className="title" style={{margin:`${inputs ? '1rem 0' : '0'}`}}>
+            <div
+              className="title"
+              style={{ margin: `${inputs ? "1rem 0" : "0"}` }}
+            >
               <h1 style={{ textAlign: "center", fontSize: "1.5rem" }}>
                 Section title
               </h1>

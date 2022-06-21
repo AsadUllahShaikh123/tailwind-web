@@ -1,21 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Suggestion from './Suggestion'
 
 let suggestion = "Extract the downloaded ZIP file and follow the Hosting Guide to get your digital business card online.If you find this service valuable to you or your business, please consider donating."
 
 let data =[
   {
-    value:'I did not attach any link or file that will cause any risk to the user'
+    value:'I did not attach any link or file that will cause any risk to the user',
+    button:'btn1'
   },
   {
-    value:'I have verified that all the links are working correctly'
+    value:'I have verified that all the links are working correctly',
+    button:'btn2'
   },
   {
-    value:'I have removed all unused fields and sections'
+    value:'I have removed all unused fields and sections',
+    button:'btn3'
   }
 ]
 
 const Download = () => {
+  let [click,setClick] = useState({
+    btn1:false,
+    btn2:false,
+    btn3:false
+  })
   return (
     <>
       <h1
@@ -40,6 +48,8 @@ const Download = () => {
           }}
         >
           <button
+          name ={values.button}
+          onClick={(e)=> setClick({...click,[e.target.name]:true})}
             style={{
               color: "white",
               fontSize: "1.5rem",
@@ -50,7 +60,7 @@ const Download = () => {
               width: "50px",
               height: "50px",
             }}
-          > <i class="fa-solid fa-check"></i></button>
+          > {click.btn1 && <i class="fa-solid fa-check"></i> }</button>
           
             <p style={{  color: "rgb(243, 244, 246)"}}>{values.value}</p>
         </div>
