@@ -1,6 +1,15 @@
 import React from "react";
 
-const Theme = () => {
+const Theme = ({theme,setTheme}) => {
+  let handleClick=(e)=>{
+    let {name} = e.target;
+    if(name === 'btn1')
+    setTheme({'btn2':false,'btn3':false,[name]:true})
+    else if(name === 'btn2')
+    setTheme({'btn1':false,'btn3':false,[name]:true})
+    else if(name === 'btn3')
+    setTheme({'btn1':false,'btn2':false,[name]:true})
+  }
   return (
     <>
       <h1
@@ -17,8 +26,10 @@ const Theme = () => {
         className="boxes"
         style={{ width: "100%", display: "flex", marginTop: "1rem" }}
       >
-        <div
+        <button
           className="box"
+          name='btn1'
+          onClick={handleClick}
           style={{
             width: "15%",
             textAlign: "center",
@@ -27,13 +38,15 @@ const Theme = () => {
             padding: "0.5rem 1rem",
             borderRadius: "4px",
             fontSize: "1.5rem",
-            backgroundColor: "rgb(5 150 105)",
+            backgroundColor: `${theme.btn1 ? "rgb(5 150 105)" : "rgb(75 85 99)"}`,
           }}
         >
           A
-        </div>
-        <div
+        </button>
+        <button
           className="box"
+          name="btn2"
+          onClick={handleClick}
           style={{
             width: "15%",
             textAlign: "center",
@@ -42,13 +55,15 @@ const Theme = () => {
             padding: "0.5rem 1rem",
             borderRadius: "4px",
             fontSize: "1.5rem",
-            backgroundColor: "rgb(55 65 81)",
+            backgroundColor: `${theme.btn2 ? "rgb(5 150 105)" : 'rgb(55 65 81)'}`,
           }}
         >
           B
-        </div>
-        <div
+        </button>
+        <button
+          name="btn3"
           className="box"
+          onClick={handleClick}
           style={{
             width: "15%",
             textAlign: "center",
@@ -57,11 +72,11 @@ const Theme = () => {
             padding: "0.5rem 1rem",
             borderRadius: "4px",
             fontSize: "1.5rem",
-            backgroundColor: "rgb(55 65 81)",
+            backgroundColor: `${theme.btn3 ? "rgb(5 150 105)" : 'rgb(55 65 81)'}`,
           }}
         >
           C
-        </div>
+        </button>
       </div>
     </>
   );

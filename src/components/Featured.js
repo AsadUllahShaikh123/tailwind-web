@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Footer from "./Footer";
 import Suggestion from "./Suggestion";
 
 let suggestion = "Supported media formats: jpeg, png, mp3, mp4, webm and pdf"
+
 
 let data = [
   {
@@ -22,7 +23,8 @@ let data = [
     icon: "fa fa-text-height",
   },
 ];
-const Featured = () => {
+const Featured = ({footerClick,setFooterClick,theme,setTheme}) => {
+  
   return (
     <>
       <div className="feature">
@@ -89,7 +91,7 @@ const Featured = () => {
             }}
           >
             {data.map((values) => (
-              <div
+              <button
                 className="box"
                 key={values.value}
                 style={{
@@ -112,7 +114,7 @@ const Featured = () => {
                 <div className="value">
                   <p>{values.value}</p>
                 </div>
-              </div>
+              </button>
             ))}
           </div>
           
@@ -142,7 +144,7 @@ const Featured = () => {
           </div>
           <Suggestion suggestion={suggestion}/>
 
-          <Footer/>
+          <Footer footerClick={footerClick} setFooterClick={setFooterClick} theme={theme} setTheme={setTheme}/>
       </div>
     </>
   );

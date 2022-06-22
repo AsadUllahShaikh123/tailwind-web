@@ -4,6 +4,15 @@ import Hero from "./components/Hero";
 import Info from "./components/Info";
 
 const App = () => {
+  let [showData,setShowData] = useState([])
+  let [secondaryShowData, setSecondaryShowData] = useState([]);
+  let [footerClick,setFooterClick] = useState(true)
+  let [theme,setTheme] = useState({
+    btn1:true,
+    btn2:false,
+    btn3:false
+  })
+
   let [inputs, setInputs] = useState({
     firstName: "",
     lastName: "",
@@ -55,7 +64,15 @@ const App = () => {
           handleImageChange={handleImageChange}
           click={click}
           setClick={setClick}
-        />
+          showData ={showData}
+          setShowData={setShowData}
+          secondaryShowData={secondaryShowData}
+          setSecondaryShowData={setSecondaryShowData}
+          footerClick={footerClick}
+          setFooterClick={setFooterClick}
+          theme={theme}
+          setTheme={setTheme}
+      />
       </div>
     </>
   );

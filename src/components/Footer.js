@@ -1,4 +1,3 @@
-import React from "react";
 import Analytics from "./Analytics";
 import Colors from "./Colors";
 import Download from "./Download";
@@ -9,7 +8,7 @@ import Theme from "./Theme";
 
 let suggestion =
   "By enabling the footer credit, you can help this project reach more people.";
-const Footer = () => {
+const Footer = ({footerClick,setFooterClick,theme,setTheme}) => {
   return (
     <>
       <h1
@@ -26,18 +25,19 @@ const Footer = () => {
         className="footer-section"
         style={{ display: "flex", alignItems: "center", marginTop: "2rem" }}
       >
-        <div
+        <button
           className="green"
           style={{
             width: "120px",
             borderRadius: "4px",
             height: "50px",
-            backgroundColor: "rgb(5 150 105)",
+            backgroundColor: `${footerClick ? "rgb(5 150 105)" :'rgb(55 65 81)'}`,
             padding: "0.3rem",
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: `${footerClick ? 'flex-end' : 'flex-start' }`,
             marginRight: "2rem",
           }}
+          onClick={()=> setFooterClick(!footerClick)}
         >
           <div
             className="white"
@@ -48,14 +48,18 @@ const Footer = () => {
               backgroundColor: "white",
             }}
           ></div>
-        </div>
-        <p style={{ color: "white", fontSize: "1.2rem" }}>Enabled</p>
+        </button>
+        <p style={{ color: "white", fontSize: "1.2rem" }}>
+          {
+             footerClick ? "Enabled" : 'Disabled'
+          }
+        </p>
       </div>
       <Suggestion suggestion={suggestion} />
 
-      <Theme/>
+      <Theme theme={theme} setTheme={setTheme}/>
 
-      <Colors/>
+      {/* <Colors/> */}
       <Fonts/>
       <Analytics/>
       <Hosting/>

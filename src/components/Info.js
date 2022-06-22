@@ -14,6 +14,14 @@ const Info = ({
   handleImageChange,
   click,
   setClick,
+  showData,
+  setShowData,
+  secondaryShowData,
+  setSecondaryShowData,
+  footerClick,
+  setFooterClick,
+  theme,
+  setTheme
 }) => {
   return (
     <>
@@ -38,21 +46,28 @@ const Info = ({
             handleImageChange={handleImageChange}
             click={click}
             setClick={setClick}
+            footerClick={footerClick}
+            setFooterClick={setFooterClick}
           />
           <FormSection
             inputs={inputs}
             setInputs={setInputs}
             handleChange={handleChange}
           />
-          <Actions />
-          <Featured />
+          <Actions
+            showData={showData}
+            setShowData={setShowData}
+            secondaryShowData={secondaryShowData}
+            setSecondaryShowData={setSecondaryShowData}
+          />
+          <Featured footerClick={footerClick} setFooterClick={setFooterClick} theme={theme} setTheme={setTheme} />
         </div>
 
         <div
           className="preview-sec hidden md:block"
           style={{
             width: "45%",
-            maxHeight: "100vh",
+            maxHeight: `${footerClick ? '120vh' : '110vh'}`,
             overflow: "scroll",
             overflowX: "hidden",
             scrollbarWidth: "0px",
@@ -62,6 +77,7 @@ const Info = ({
             backgroundColor: "black",
             borderRadius: "8px",
             border: "1px solid black",
+            wordWrap: "break-word",
           }}
         >
           <h1
@@ -132,7 +148,10 @@ const Info = ({
               ></i>
             </div>
             {image.file3 && (
-              <div className="image" style={{display:'flex',justifyContent:'center'}}>
+              <div
+                className="image"
+                style={{ display: "flex", justifyContent: "center" }}
+              >
                 <img
                   src={image.file3}
                   alt=""
@@ -144,7 +163,7 @@ const Info = ({
             {image.file2 && (
               <div
                 className="hiddden"
-                style={{ position: "absolute", right: "35%", top: "90%" }}
+                style={{ position: "absolute", right: `${theme.btn3 ? '65%':'35%'}`, top: "70%" }}
               >
                 <img
                   src={image.file2}
@@ -153,7 +172,7 @@ const Info = ({
                   style={{
                     width: "150px",
                     height: "150px",
-                    borderRadius: "50%",
+                    borderRadius: `${theme.btn2 ||theme.btn3 ? '2rem' :'50%'}`,
                     border: "2px solid white",
                   }}
                 />
@@ -175,6 +194,7 @@ const Info = ({
               background: "rgb(251,251,251)",
               borderRadius: "0 0 8px 8px",
               backgroundPosition: "center center",
+              wordWrap: "break-word",
             }}
           >
             <div
@@ -184,7 +204,9 @@ const Info = ({
                 flexDirection: "column",
                 alignItems: "center",
                 justifyContent: "center",
-                margin: `${inputs ? "9rem 0" : "0"}`,
+                margin: `${inputs.firstName ? "9rem 0" : "0"}`,
+                wordBreak: "break-word",
+                textAlign: "center",
               }}
             >
               {(inputs.firstName || inputs.lastName) && (
@@ -215,23 +237,107 @@ const Info = ({
                   fontSize: "1.5rem",
                   padding: "1rem",
                   backgroundColor: "rgb(5 150 105)",
-                  margin: `${inputs ? "1rem 0" : "0"}`,
+                  margin: `${image.file2 && inputs.firstName ? "0" : "9rem 0"}`,
                 }}
               >
                 Save Contact
               </button>
             </div>
             <div
-              className="title"
-              style={{ margin: `${inputs ? "1rem 0" : "0"}` }}
+              className="primaryActionbuttons"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                flexWrap: "wrap",
+                padding: "0 2rem",
+              }}
             >
-              <h1 style={{ textAlign: "center", fontSize: "1.5rem" }}>
-                Section title
-              </h1>
+              {showData.length > 0 &&
+                showData.map((values) => (
+                  <div
+                    className="logo"
+                    style={{
+                      padding: "1rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <values.icon
+                      style={{
+                        fontSize: "2rem",
+                        width: "4rem",
+                        height: "4rem",
+                        padding: "0.7rem",
+                        color: "white",
+                        backgroundColor: "rgb(5, 150, 105)",
+                        borderRadius: "50%",
+                      }}
+                    />
+
+                    <p style={{ color: "black", marginTop: "0.5rem" }}>
+                      {values.value}
+                    </p>
+                  </div>
+                ))}
             </div>
-            <div>
-              <p style={{ textAlign: "center" }}>created with EnBizCard</p>
+
+            <div
+              className="secondaryActionbuttons"
+              style={{
+                display: "flex",
+                justifyContent: "space-around",
+                flexWrap: "wrap",
+                padding: "0 2rem",
+              }}
+            >
+              {secondaryShowData.length > 0 &&
+                secondaryShowData.map((values) => (
+                  <div
+                    className="logo"
+                    style={{
+                      padding: "1rem",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      textAlign: "center",
+                    }}
+                  >
+                    <i
+                      className={values.icon}
+                      style={{
+                        fontSize: "2rem",
+                        width: "4rem",
+                        height: "4rem",
+                        padding: "0.7rem",
+                        color: "white",
+                        backgroundColor: "rgb(5, 150, 105)",
+                        borderRadius: "50%",
+                      }}
+                    />
+
+                    <p style={{ color: "black", marginTop: "0.5rem" }}>
+                      {values.value}
+                    </p>
+                  </div>
+                ))}
             </div>
+
+            {footerClick && (
+              <>
+                <div
+                  className="title"
+                  style={{ margin: `${inputs.firstName ? "1rem 0" : "0"}` }}
+                >
+                  <h1 style={{ textAlign: "center", fontSize: "1.5rem" }}>
+                    Section title
+                  </h1>
+                </div>
+                <div>
+                  <p style={{ textAlign: "center" }}>created with EnBizCard</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>

@@ -10,6 +10,8 @@ const InfoSection = ({
   handleImageChange,
   click,
   setClick,
+  footerClick,
+  setFooterClick
 }) => {
   let handleRemoveImage = (e) => {
     setClick({ ...click, [e.target.name]: true });

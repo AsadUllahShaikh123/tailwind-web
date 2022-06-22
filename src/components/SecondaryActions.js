@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 let data = [
   {
     value: "App Store",
@@ -196,7 +196,18 @@ let data = [
     color: "rgb(255,0,0)",
   },
 ];
-const SecondaryActions = () => {
+const SecondaryActions = ({secondaryShowData,setSecondaryShowData}) => {
+  
+  let [showButtons,setShowButtons] = useState(data);
+  let handleChange = (values,indexFound) => {
+    setSecondaryShowData([...secondaryShowData,values]);
+    setShowButtons(showButtons.filter((_,index)=> index !== indexFound))
+  };
+  let handleRemove =(values,indexFound)=>{
+    console.log(values);
+    setSecondaryShowData(secondaryShowData.filter((_,index) => index !== indexFound ))
+    setShowButtons([...showButtons,values])
+  }
   return (
     <>
       <h1
@@ -210,19 +221,50 @@ const SecondaryActions = () => {
       </h1>
 
       <div className="input-field" style={{ marginTop: "1rem" }}>
-        <input
-          type="text"
-          style={{
-            width: "100%",
-            height: "45px",
-            backgroundColor: "black",
-            caretColor: "white",
-            padding: "0 1rem",
-            color: "white",
-            borderRadius: "4px",
-          }}
-          placeholder="search an action"
-        />
+
+        {
+          secondaryShowData.length > 0 ? (
+            secondaryShowData.map((values,index) => (
+              <div
+                className="logo-input"
+                style={{ display: "flex", alignItems: "center", marginTop: "1rem" }}
+              >
+                <div className="logo" style={{ padding:'0.2rem 1rem',borderRadius:'4px',backgroundColor:'rgb(5, 150, 105)'}}>
+                  <i className={values.icon} style={{ fontSize: "2rem", color: "white" }}></i>
+                </div>
+                <div className="input">
+                  <input
+                    type="text"
+                    placeholder="+XX XXXX XXXXXX"
+                    style={{
+                      width: "95%",
+                      padding: "0.4rem 1rem",
+                      backgroundColor: "black",
+                      caretColor: "white",
+                      color: "white",
+                    }}
+                  />
+                </div>
+                <button className="cross" style={{color:'white',fontSize:'1.5rem'}} onClick={()=> handleRemove(values,index)}>X</button>
+              </div>
+            ))
+          ) : (
+            <input
+            type="text"
+            style={{
+              width: "100%",
+              height: "45px",
+              backgroundColor: "black",
+              caretColor: "white",
+              padding: "0 1rem",
+              color: "white",
+              borderRadius: "4px",
+            }}
+            placeholder="search an action"
+          />
+            )
+        }
+        
       </div>
 
       <div
@@ -234,9 +276,10 @@ const SecondaryActions = () => {
           marginTop: "1rem",
         }}
       >
-        {data.map((values) => (
-          <div
+        {showButtons.map((values,index) => (
+          <button
             className="box"
+            onClick={()=> handleChange(values,index)}
             key={values.value}
             style={{
               width: "49%",
@@ -260,7 +303,7 @@ const SecondaryActions = () => {
             <div className="value">
               <p>{values.value}</p>
             </div>
-          </div>
+          </button>
         ))}
       </div>
     </>
