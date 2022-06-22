@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import Footer from "./Footer";
 import Suggestion from "./Suggestion";
 
-let suggestion = "Supported media formats: jpeg, png, mp3, mp4, webm and pdf"
-
+let suggestion = "Supported media formats: jpeg, png, mp3, mp4, webm and pdf";
 
 let data = [
   {
@@ -23,8 +22,14 @@ let data = [
     icon: "fa fa-text-height",
   },
 ];
-const Featured = ({footerClick,setFooterClick,theme,setTheme}) => {
-  
+const Featured = ({ footerClick, setFooterClick, theme, setTheme }) => {
+  let [selected, setSelected] = useState([]);
+  let handleEvent = (value) => {
+    setSelected([...selected, value]);
+  };
+  let removeChange =(indexFind)=> {
+    setSelected(selected.filter((_,index) => index !== indexFind))
+  }
   return (
     <>
       <div className="feature">
@@ -69,6 +74,7 @@ const Featured = ({footerClick,setFooterClick,theme,setTheme}) => {
               }}
               placeholder="Section title"
             />
+
             <div
               className="symbol"
               style={{
@@ -82,6 +88,33 @@ const Featured = ({footerClick,setFooterClick,theme,setTheme}) => {
               X
             </div>
           </div>
+          {selected.map((values,index) => (
+            <div
+              style={{ display: "flex", alignItems: "center", margin: "1rem" }}
+            >
+              <input
+                placeholder={values.value}
+                style={{
+                  width: "90%",
+                  marginRight: "1.3rem",
+                  backgroundColor: "transparent",
+                  border:'2px solid black',
+                  padding: "0.2rem 1rem",
+                  outline:'none',
+                  fontSize: "1.5rem",
+                  caretColor:'white',
+                  color:'white'
+                }}
+              />
+              <button
+              onClick={()=> removeChange(index)}
+                className="cross"
+                style={{ fontSize: "1.5rem", color: "white" }}
+              >
+                X
+              </button>
+            </div>
+          ))}
           <div
             style={{
               display: "flex",
@@ -94,6 +127,7 @@ const Featured = ({footerClick,setFooterClick,theme,setTheme}) => {
               <button
                 className="box"
                 key={values.value}
+                onClick={() => handleEvent(values)}
                 style={{
                   width: "49%",
                   marginTop: "0.4rem",
@@ -117,34 +151,43 @@ const Featured = ({footerClick,setFooterClick,theme,setTheme}) => {
               </button>
             ))}
           </div>
-          
         </div>
         <div
-            className="stepC"
-            style={{ display: "flex",alignItems:'center', flexWrap: "wrap", marginTop: "1.5rem" }}
+          className="stepC"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            flexWrap: "wrap",
+            marginTop: "1.5rem",
+          }}
+        >
+          <button
+            style={{
+              color: "white",
+              fontSize: "1.5rem",
+              marginRight: "1rem",
+              padding: "0.4rem 1rem",
+              backgroundColor: "rgb(75 85 99)",
+              borderRadius: "4px",
+              fontWeight: "800",
+            }}
           >
-            <button
-              style={{
-                color: "white",
-                fontSize: "1.5rem",
-                marginRight: "1rem",
-                padding: "0.4rem 1rem",
-                backgroundColor: "rgb(75 85 99)",
-                borderRadius: "4px",
-                fontWeight: "800",
-              }}
-            >
-              +
-            </button>
-            <div className="text">
-              <p style={{ color: "rgb(243, 244, 246)", fontWeight: "400" }}>
-                Add Section
-              </p>
-            </div>
+            +
+          </button>
+          <div className="text">
+            <p style={{ color: "rgb(243, 244, 246)", fontWeight: "400" }}>
+              Add Section
+            </p>
           </div>
-          <Suggestion suggestion={suggestion}/>
+        </div>
+        <Suggestion suggestion={suggestion} />
 
-          <Footer footerClick={footerClick} setFooterClick={setFooterClick} theme={theme} setTheme={setTheme}/>
+        <Footer
+          footerClick={footerClick}
+          setFooterClick={setFooterClick}
+          theme={theme}
+          setTheme={setTheme}
+        />
       </div>
     </>
   );
